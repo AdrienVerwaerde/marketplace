@@ -28,15 +28,15 @@ export default function LoginScreen() {
     }, []);
 
     return (
-        <View>
+        <View className="flex flex-column items-center justify-center h-full">
             <Image
-                source={require('./../../assets/images/fond_ciel.jpg')}
+                source={require('../../assets/images/fond_ciel.jpg')}
                 className="w-full object-cover flex absolute"
             />
-            <View className="flex flex-column justify-center items-center mt-[300px] mx-5 z-10 p-8 bg-white rounded-3xl shadow-md">
-                <Text className="text-[30px] font-bold">Community Marketplace</Text>
+            <View className="flex flex-column justify-center items-center mx-5 z-10 p-8 bg-white rounded-3xl shadow-md">
+                <Text className="text-[30px] font-bold">Airsoft Marketplace</Text>
                 <Text className="text-[18px] text-slate-500 mt-6">Buy and sell airsoft gear</Text>
-                <TouchableOpacity onPress={onPress} className="p-4 bg-blue-500 rounded-full mt-20">
+                <TouchableOpacity onPress={onPress} className="p-4 bg-blue-500 rounded-full mt-10">
                     <Text className="text-white text-center text-[18px]">Get Started</Text>
                 </TouchableOpacity>
             </View>

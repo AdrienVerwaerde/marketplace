@@ -1,15 +1,19 @@
 import { Image, StyleSheet, Platform, StatusBar, View, Text } from 'react-native';
 import LoginScreen from '../screens/LoginScreen'
 import { ClerkProvider, SignedIn, SignedOut } from '@clerk/clerk-expo';
+import { NavigationContainer } from '@react-navigation/native';
+import TabNavigation from './_layout'
 
-
-export default function HomeScreen() {
+export default function App() {
   return (
     <ClerkProvider publishableKey='pk_test_aW1tdW5lLWxpb25maXNoLTcyLmNsZXJrLmFjY291bnRzLmRldiQ'>
       <View>
         <StatusBar />
         <SignedIn>
-          <Text style={styles.title}>You are Signed in</Text>
+          <NavigationContainer>
+            <TabNavigation />
+            
+            </NavigationContainer>
         </SignedIn>
         <SignedOut>
           <LoginScreen />
