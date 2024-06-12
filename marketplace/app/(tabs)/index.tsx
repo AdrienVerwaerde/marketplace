@@ -1,6 +1,7 @@
 import { Image, StyleSheet, Platform, StatusBar, View, Text } from 'react-native';
-import LoginScreen from './LoginScreen'
+import LoginScreen from '../screens/LoginScreen'
 import { ClerkProvider, SignedIn, SignedOut } from '@clerk/clerk-expo';
+
 
 export default function HomeScreen() {
   return (
