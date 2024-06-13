@@ -3,6 +3,7 @@ import LoginScreen from '../screens/LoginScreen'
 import { ClerkProvider, SignedIn, SignedOut } from '@clerk/clerk-expo';
 import { NavigationContainer } from '@react-navigation/native';
 import TabNavigation from './_layout'
+import AddPostScreen from '../screens/AddPostScreen';
 
 export default function App() {
   return (
@@ -11,8 +12,7 @@ export default function App() {
         <StatusBar />
         <SignedIn>
           <NavigationContainer>
-            <TabNavigation />
-            
+            <AddPostScreen />
             </NavigationContainer>
         </SignedIn>
         <SignedOut>
