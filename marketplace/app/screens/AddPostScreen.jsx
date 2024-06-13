@@ -7,13 +7,14 @@ import * as ImagePicker from 'expo-image-picker';
 import { getFirestore, getDocs, collection, addDoc, } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage"
 import { useUser } from '@clerk/clerk-expo';
+
 export default function AddPostScreen() {
   const [image, setImage] = useState(null);
   const db = getFirestore(app);
   const storage = getStorage();
   const [loading, setLoading] = useState(false);
-  const { user } = useUser();
   const [categoryList, setCategoryList] = useState([]);
+
   useEffect(() => {
     getCategoryList();
   }, [])
@@ -64,9 +65,6 @@ export default function AddPostScreen() {
       getDownloadURL(storageRef).then(async (downloadUrl) => {
         console.log(downloadUrl);
         value.image = downloadUrl;
-        value.userName = user.fullName;
-        value.userEmail = user.primaryEmailAddress.emailAddress;
-        value.userImage = user.imageUrl;
         const docRef = await addDoc(collection(db, "UserPost"), value)
         if (docRef.id) {
           setLoading(false);
