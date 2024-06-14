@@ -6,11 +6,18 @@
       "@/*": [
         "./*"
       ]
-    }
+    },
+    "jsx": "react", // ou "react-jsx" pour une version plus récente de React
+    "allowJs": true, // Permettre d'importer des fichiers .js et .jsx
+    "esModuleInterop": true, // Assurer la compatibilité avec les modules ES
+    "resolveJsonModule": true,
+    "noEmit": true
   },
   "include": [
     "**/*.ts",
     "**/*.tsx",
+    "**/*.js",
+    "**/*.jsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
   ]

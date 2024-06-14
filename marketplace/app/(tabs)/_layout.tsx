@@ -15,15 +15,22 @@ export default function TabNavigation() {
     return (
         <Tab.Navigator screenOptions={{
             headerShown:false,
-            tabBarActiveTintColor:'#000000',
-            }}>
+            tabBarActiveTintColor:'#ffffff',
+            tabBarStyle:{
+                height: 60,
+                paddingTop: 5,
+                paddingBottom: 5,
+                backgroundColor: '#111'
+            }
+            }}
+            >
             <Tab.Screen name='home' component={HomeScreen}
             options={{
                 tabBarLabel:({color})=>(
                     <Text style={{color:color,marginBottom:3,fontSize:12}}>HOME</Text>
                 ),
                 tabBarIcon:({color,size})=>(
-                    <Entypo name="home" size={24} color={color}/>
+                    <Entypo name="home" size={24} color={color} />
                 )
             }} />
             <Tab.Screen name='explore' component={ExploreScreen}

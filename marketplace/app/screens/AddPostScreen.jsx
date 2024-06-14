@@ -12,6 +12,7 @@ export default function AddPostScreen() {
   const [image, setImage] = useState(null);
   const db = getFirestore(app);
   const storage = getStorage();
+  // const {user} = useUser();
   const [loading, setLoading] = useState(false);
   const [categoryList, setCategoryList] = useState([]);
 
@@ -32,7 +33,7 @@ export default function AddPostScreen() {
   }
 
   /**
-   * Used to Pick Image from Gallary
+   * Used to Pick Image from gallery
    */
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
@@ -54,7 +55,8 @@ export default function AddPostScreen() {
   const onSubmitMethod = async (value) => {
 
     setLoading(true)
-    //Covert Uri to Blob File
+
+    //Covert URI to Blob File
     const resp = await fetch(image);
     const blob = await resp.blob();
     const storageRef = ref(storage, 'communityPost/' + Date.now() + ".jpg");
@@ -65,10 +67,13 @@ export default function AddPostScreen() {
       getDownloadURL(storageRef).then(async (downloadUrl) => {
         console.log(downloadUrl);
         value.image = downloadUrl;
+        // value.userName=user.fullName;
+        // value.userEmail=user.primaryEmailAdress.emailAdress;
+        // value.userImage=user.iamgeUrl;
         const docRef = await addDoc(collection(db, "UserPost"), value)
         if (docRef.id) {
           setLoading(false);
-          Alert.alert('Success!!!', 'Post Added Successfully.')
+          Alert.alert('Success!', 'Post Added Successfully.')
         }
       })
     });
@@ -77,7 +82,7 @@ export default function AddPostScreen() {
   }
   return (
     <KeyboardAvoidingView>
-      <ScrollView className="p-10 bg-white ">
+      <ScrollView className="p-10 bg-white h-full flex flex-col">
         <Text className="text-[27px] font-bold">Add New Post</Text>
         <Text className="text-[16px] text-gray-500 mb-7">Create New Post and Start Selling</Text>
         <Formik
@@ -95,7 +100,6 @@ export default function AddPostScreen() {
         >
           {({ handleChange, handleBlur, handleSubmit, values, setFieldValue, errors }) => (
             <View>
-
               <TouchableOpacity onPress={pickImage}>
                 {image ?
                   <Image source={{ uri: image }} style={{ width: 100, height: 100, borderRadius: 15 }} />
@@ -103,7 +107,6 @@ export default function AddPostScreen() {
                   <Image source={require('../../assets/images/placeholder-image.jpg')}
                     style={{ width: 100, height: 100, borderRadius: 15 }}
                   />}
-
               </TouchableOpacity>
               <TextInput
                 style={styles.input}
@@ -115,7 +118,6 @@ export default function AddPostScreen() {
                 style={styles.input}
                 placeholder='Description'
                 value={values?.desc}
-
                 numberOfLines={5}
                 onChangeText={handleChange('desc')}
               />
@@ -132,7 +134,6 @@ export default function AddPostScreen() {
                 value={values?.addresss}
                 onChangeText={handleChange('address')}
               />
-
               {/* Category List Dropdown  */}
               <View style={{ borderWidth: 1, borderRadius: 10, marginTop: 15 }}>
                 <Picker
@@ -144,20 +145,18 @@ export default function AddPostScreen() {
                     <Picker.Item key={index}
                       label={item?.name} value={item?.name} />
                   ))}
-
                 </Picker>
               </View>
               <TouchableOpacity onPress={handleSubmit}
                 style={{
                   backgroundColor: loading ? '#ccc' : '#007BFF',
-
                 }}
                 disabled={loading}
                 className="p-4 bg-blue-500 rounded-full mt-10">
                 {loading ?
                   <ActivityIndicator color='#fff' />
                   :
-                  <Text className="text-white text-center text-[16px]">Submit</Text>
+                  <Text className="text-white text-center text-[16px] uppercase">Submit</Text>
                 }
               </TouchableOpacity>
 
