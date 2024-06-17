@@ -1,17 +1,17 @@
-import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native'
-import React from 'react'
+import { View, Text, ImageBackground, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
+import React from 'react';
 import { useWarmUpBrowser } from '../hooks/useWarmUpBrowser';
-import * as WebBrowser from "expo-web-browser";
+import * as WebBrowser from 'expo-web-browser';
 import { useOAuth } from '@clerk/clerk-expo';
-
 
 WebBrowser.maybeCompleteAuthSession();
 
+const { height } = Dimensions.get('window');
 
 export default function LoginScreen() {
     useWarmUpBrowser();
 
-    const { startOAuthFlow } = useOAuth({ strategy: "oauth_google" });
+    const { startOAuthFlow } = useOAuth({ strategy: 'oauth_google' });
 
     const onPress = React.useCallback(async () => {
         try {
@@ -24,49 +24,70 @@ export default function LoginScreen() {
                 // Use signIn or signUp for next steps such as MFA
             }
         } catch (err) {
-            console.error("OAuth error", err);
+            console.error('OAuth error', err);
         }
     }, []);
 
-
     return (
-        <View style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            alignItems: 'center'
-            
-        }}>
-            {/* <Image source={require('../assets/images/fond_ciel.jpg')}/> */}
+        <ImageBackground
+            source={require('../assets/images/fond_ciel.jpg')}
+            style={styles.background}
+            resizeMode="cover"
+        >
             <View style={styles.subContainer}>
-                <Text style={{ fontSize: 30, fontWeight: 'bold' }}>Airsoft Marketplace</Text>
-                <Text style={{ fontSize: 18, color: '#555' }}>Buy and sell airsoft gear</Text>
+                <Text style={styles.title}>Airsoft Marketplace</Text>
+                <Text style={styles.subtitle}>Buy and sell airsoft gear</Text>
                 <TouchableOpacity onPress={onPress} style={styles.button}>
-                    <Text style={{ fontSize: 18, textTransform: 'uppercase', color: 'white', textAlign: 'center' }}>Get Started</Text>
+                    <Text style={styles.buttonText}>Get Started</Text>
                 </TouchableOpacity>
-                
             </View>
-        </View>
-    )
+        </ImageBackground>
+    );
 }
 
 const styles = StyleSheet.create({
+    background: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100%',
+    },
     subContainer: {
-        backgroundColor: '#fff',
+        backgroundColor:'#fff',
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 2,
+            height: 2,
+        },
         padding: 20,
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 50,
-        height: '100%'
+        borderRadius: 10,
+        width: '90%',
+        height: '30%'
+    },
+    title: {
+        fontSize: 30,
+        fontWeight: 'bold',
+        marginBottom: 10,
+    },
+    subtitle: {
+        fontSize: 18,
+        color: '#555',
+        marginBottom: 20,
     },
     button: {
         backgroundColor: '#2196F3',
         borderRadius: 50,
-        marginTop: 20,
         padding: 15,
-        width: 250
-    }
-})
+        width: 250,
+    },
+    buttonText: {
+        fontSize: 18,
+        textTransform: 'uppercase',
+        color: 'white',
+        textAlign: 'center',
+    },
+});
