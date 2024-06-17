@@ -12,7 +12,7 @@ export default function AddPostScreen() {
     const [image, setImage] = useState(null);
     const db = getFirestore(app);
     const storage = getStorage();
-    // const {user} = useUser();
+    const { user } = useUser();
     const [loading, setLoading] = useState(false);
     const [categoryList, setCategoryList] = useState([]);
 
@@ -67,9 +67,9 @@ export default function AddPostScreen() {
             getDownloadURL(storageRef).then(async (downloadUrl) => {
                 console.log(downloadUrl);
                 value.image = downloadUrl;
-                // value.userName=user.fullName;
-                // value.userEmail=user.primaryEmailAdress.emailAdress;
-                // value.userImage=user.iamgeUrl;
+                value.userName = user.fullName;
+                value.userEmail = user.primaryEmailAddress.emailAddress;
+                value.userImage = user.imageUrl;
                 const docRef = await addDoc(collection(db, "UserPost"), value)
                 if (docRef.id) {
                     setLoading(false);
@@ -82,9 +82,16 @@ export default function AddPostScreen() {
     }
     return (
         <KeyboardAvoidingView>
-            <ScrollView>
-                <Text>Add New Post</Text>
-                <Text>Create New Post and Start Selling</Text>
+            <ScrollView contentContainerStyle={styles.formContainer}>
+                <Text style={{
+                    fontSize: 27,
+                    fontWeight: 'bold'
+                }}>Add New Post</Text>
+                <Text style={{
+                    fontSize: 16,
+                    color: 'gray',
+                    marginBottom: 10
+                }}>Create New Post and Start Selling</Text>
                 <Formik
                     initialValues={{ title: '', desc: '', address: '', price: '', image: '', userName: '', userEmail: '', userImage: '', createdAt: Date.now() }}
                     onSubmit={value => onSubmitMethod(value)}
@@ -138,7 +145,6 @@ export default function AddPostScreen() {
                             <View style={{ borderWidth: 1, borderRadius: 10, marginTop: 15 }}>
                                 <Picker
                                     selectedValue={values?.category}
-                                    
                                     onValueChange={itemValue => setFieldValue('category', itemValue)}
                                 >
                                     {categoryList.length > 0 && categoryList?.map((item, index) => (
@@ -150,18 +156,25 @@ export default function AddPostScreen() {
                             <TouchableOpacity onPress={handleSubmit}
                                 style={{
                                     backgroundColor: loading ? '#ccc' : '#007BFF',
+                                    backgroundColor: '#2196F3',
+                                    borderRadius: 50,
+                                    padding: 15,
+                                    marginTop: 25,
                                 }}
                                 disabled={loading}
-                                >
+                            >
                                 {loading ?
                                     <ActivityIndicator color='#fff' />
                                     :
-                                    <Text>Submit</Text>
+                                    <Text style={{
+                                        color: '#fff',
+                                        textTransform: 'uppercase',
+                                        fontSize: 18,
+                                        textAlign: 'center'
+                                    }}>Submit</Text>
                                 }
                             </TouchableOpacity>
-
                         </View>
-
                     )}
                 </Formik>
             </ScrollView>
@@ -170,16 +183,26 @@ export default function AddPostScreen() {
     )
 }
 
+//Styles
+
 const styles = StyleSheet.create({
     input: {
         borderWidth: 1,
         borderRadius: 10,
         padding: 10,
         paddingTop: 15,
-
         marginTop: 10, marginBottom: 5,
         paddingHorizontal: 17,
         textAlignVertical: 'top',
         fontSize: 17
-    }
+    },
+    formContainer: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'start',
+        padding: 25,
+        backgroundColor: '#fff',
+        height: '100%'
+    },
 })

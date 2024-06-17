@@ -45,6 +45,8 @@ export default function LoginScreen() {
     );
 }
 
+//Styles
+
 const styles = StyleSheet.create({
     background: {
         flex: 1,
@@ -75,14 +77,14 @@ const styles = StyleSheet.create({
     },
     subtitle: {
         fontSize: 18,
-        color: '#555',
+        color: 'gray',
         marginBottom: 20,
     },
     button: {
         backgroundColor: '#2196F3',
         borderRadius: 50,
         padding: 15,
-        width: 250,
+        width:'75%'
     },
     buttonText: {
         fontSize: 18,

@@ -30,8 +30,8 @@ export default function LoginScreen() {
     return (
         <View className="flex flex-column items-center justify-center h-full">
             <Image
-                source={require('../../assets/images/fond_ciel.jpg')}
-                className="w-full object-cover flex absolute"
+                source={require('../assets/images/fond_ciel.jpg')}
+                className="w-full object-cover flex"
             />
             <View className="flex flex-column justify-center items-center mx-5 z-10 p-8 bg-white rounded-3xl shadow-md">
                 <Text className="text-[30px] font-bold">Airsoft Marketplace</Text>

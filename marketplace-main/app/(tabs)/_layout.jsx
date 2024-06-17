@@ -3,7 +3,7 @@ import React from 'react'
 import ExploreScreen from '../../components/ExploreScreen'
 import AddPostScreen from '../../components/AddPostScreen';
 import ProfileScreen from '../../components/ProfileScreen';
-import HomeScreen from '../../components/HomeScreen';
+import HomeScreen from '../../components/HomeScreen/HomeScreen';
 import { Entypo } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -22,10 +22,10 @@ export default function TabLayout() {
             }
             }}
             >
-            <Tabs.Screen name='home' component={HomeScreen}
+            <Tabs.Screen name='home'
             options={{
                 tabBarLabel:({color})=>(
-                    <Text style={{color:color,marginBottom:3,fontSize:12}}>HOME</Text>
+                    <Text style={{color:color, marginBottom:3, fontSize:12}}>HOME</Text>
                 ),
                 tabBarIcon:({color,size})=>(
                     <Entypo name="home" size={24} color={color} />
@@ -34,7 +34,7 @@ export default function TabLayout() {
             <Tabs.Screen name='explore'
             options={{
                 tabBarLabel:({color})=>(
-                    <Text style={{color:color,marginBottom:3,fontSize:12}}>EXPLORE</Text>
+                    <Text style={{color:color, marginBottom:3, fontSize:12}}>EXPLORE</Text>
                 ),
                 tabBarIcon:({color,size})=>(
                     <FontAwesome name="search" size={24} color={color}/>
@@ -43,7 +43,7 @@ export default function TabLayout() {
             <Tabs.Screen name='addpost'
             options={{
                 tabBarLabel:({color})=>(
-                    <Text style={{color:color,marginBottom:3,fontSize:12}}>ADD POST</Text>
+                    <Text style={{color:color, marginBottom:3, fontSize:12}}>ADD POST</Text>
                 ),
                 tabBarIcon:({color,size})=>(
                     <MaterialIcons name="post-add" size={28} color={color} />
@@ -52,10 +52,10 @@ export default function TabLayout() {
             <Tabs.Screen name='profile'
             options={{
                 tabBarLabel:({color})=>(
-                    <Text style={{color:color,marginBottom:3,fontSize:12}}>PROFILE</Text>
+                    <Text style={{color:color, marginBottom:3, fontSize:12}}>PROFILE</Text>
                 ),
                 tabBarIcon:({color,size})=>(
-                    <FontAwesome name="user-circle-o" size={24} color={color}/>
+                    <FontAwesome name="user-circle-o" size={24} color="{color}"/>
                 )
             }}  />
         </Tabs>
