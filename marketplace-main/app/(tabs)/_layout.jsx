@@ -55,7 +55,7 @@ export default function TabLayout() {
                     <Text style={{color:color, marginBottom:3, fontSize:12}}>PROFILE</Text>
                 ),
                 tabBarIcon:({color,size})=>(
-                    <FontAwesome name="user-circle-o" size={24} color="{color}"/>
+                    <FontAwesome name="user-circle-o" size={24} color={color} />
                 )
             }}  />
         </Tabs>
