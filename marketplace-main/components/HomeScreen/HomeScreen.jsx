@@ -1,21 +1,24 @@
-import { View, Text } from 'react-native'
+import { View, Text, ScrollView, StyleSheet } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Header from './Header'
 import Slider from './Slider'
 import { collection, getDocs, getFirestore } from 'firebase/firestore'
 import { app } from '../../firebaseConfig'
 import Categories from './Categories'
+import LatestItemList from './LatestItemList'
 
 export default function HomeScreen() {
 
     const db = getFirestore(app);
     const [sliderList, setSliderList] = useState([]);
     const [categoryList, setCategoryList] = useState([]);
+    const [latestItemList, setLatestItemList] = useState([]);
 
 
     useEffect(() => {
         getSliders();
         getCategoryList();
+        getLatestItemList();
     }, [])
 
     /**
@@ -41,17 +44,33 @@ export default function HomeScreen() {
         });
     }
 
+    const getLatestItemList = async () => {
+        setLatestItemList([]);
+        const querySnapshot = await getDocs(collection(db, 'UserPost'));
+        querySnapshot.forEach((doc) => {
+            setLatestItemList(latestItemList => [...latestItemList, doc.data()]);
+        })
+    }
+
     return (
-        <View style={{
-            display: 'flex',
-            height: '100%',
-            backgroundColor: 'white',
-            paddingHorizontal: 15,
-            paddingVertical: 20,
-        }}>
+        <ScrollView style={styles.contentContainer}>
             <Header />
             <Slider sliderList={sliderList} />
             <Categories categoryList={categoryList} />
-        </View>
+            <LatestItemList latestItemList={latestItemList} />
+        </ScrollView>
     )
 }
+
+//Styles 
+
+const styles = StyleSheet.create({
+    contentContainer: {
+        display: 'flex',
+        height: '100%',
+        backgroundColor: 'white',
+        paddingHorizontal: 15,
+        paddingVertical: 20,
+    }
+
+})

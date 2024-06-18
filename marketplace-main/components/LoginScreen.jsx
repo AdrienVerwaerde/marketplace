@@ -55,12 +55,16 @@ const styles = StyleSheet.create({
         height: '100%',
     },
     subContainer: {
-        backgroundColor:'#fff',
-        shadowColor: '#000',
+        backgroundColor: '#fff',
+        shadowColor: "#000",
         shadowOffset: {
-            width: 2,
-            height: 2,
+            width: 0,
+            height: 1,
         },
+        shadowOpacity: 0.22,
+        shadowRadius: 2.22,
+
+        elevation: 3,
         padding: 20,
         display: 'flex',
         flexDirection: 'column',
@@ -84,7 +88,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#2196F3',
         borderRadius: 50,
         padding: 15,
-        width:'75%'
+        width: '75%'
     },
     buttonText: {
         fontSize: 18,
