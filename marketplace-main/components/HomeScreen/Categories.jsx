@@ -1,11 +1,10 @@
 import { View, Text, FlatList, Image, TouchableOpacity, ImageBackground, StyleSheet } from 'react-native'
 import React from 'react'
-import { useNavigation, useRouter } from 'expo-router'
+import { useRouter } from 'expo-router'
 
 
 export default function Categories({categoryList}) {
     const router = useRouter();
-    const navigation = useNavigation();
 
     return (
         <View style={{ marginTop: 15 }}>
@@ -16,6 +15,7 @@ export default function Categories({categoryList}) {
             numColumns={3}
             renderItem={({item, index}) => (
                 <TouchableOpacity 
+                activeOpacity={1}
                 onPress={()=>router.push('/itemslist/'+item.name)}
                 style={styles.categoryIcon}>
                     <Image source={{uri:item.icon}} 

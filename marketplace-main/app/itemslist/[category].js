@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { useRoute } from '@react-navigation/native'
 import { collection, getDocs, getFirestore, query, where } from 'firebase/firestore';
 import { app } from '../../firebaseConfig';
-import LatestItemList from '../../components/HomeScreen/LatestItemList';
 import { useLocalSearchParams, useNavigation } from 'expo-router';
+import ItemsInCategoryList from '../../components/Items/ItemsInCategoryList';
 
 export default function ItemList() {
     const { params } = useRoute();
@@ -28,7 +28,7 @@ export default function ItemList() {
         const snapshot = await getDocs(q);
         setLoading(false)
         snapshot.forEach(doc => {
-            setItemList(itemList => [...itemList, doc.data()]);
+            setItemList(itemList => [...itemList, {id:doc?.id, ...doc.data()}]);
             setLoading(false)
         })
     }
@@ -37,9 +37,9 @@ export default function ItemList() {
             {loading ?
                 <ActivityIndicator className="mt-24" size={'large'} color={'#3b82f6'} />
                 :
-                itemList?.length > 0 ? <LatestItemList latestItemList={itemList}
+                itemList?.length > 0 ? <ItemsInCategoryList itemsInCategoryList={itemList}
                     heading={''} />
-                    : <Text className="p-5 text-[20px] mt-24 justify-center text-center text-gray-400"> No Post Found</Text>}
+                    : <Text className="p-5 text-[20px] mt-24 justify-center text-center text-gray-400">No Post Found</Text>}
                 
         </View>
     )

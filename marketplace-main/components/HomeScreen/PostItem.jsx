@@ -1,9 +1,20 @@
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
+import { useRouter } from 'expo-router';
 
-export default function PostItem({item}) {
+export default function PostItem({ item }) {
+    const router = useRouter();
+
     return (
-        <TouchableOpacity style={styles.itemCard}>
+        <TouchableOpacity 
+        activeOpacity={1} 
+        style={styles.itemCard}
+        onPress={() => router.push('/itemdetails/'+item.id,
+            {
+                product:item
+            }
+        )}
+        >
             <Image source={{ uri: item.image }}
                 style={{ width: '100%', height: 180, borderTopLeftRadius: 10, borderTopRightRadius: 10 }} />
             <View style={{ padding: 5 }}>
