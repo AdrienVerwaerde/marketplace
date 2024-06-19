@@ -8,7 +8,7 @@ export default function Header() {
     const { user } = useUser();
 
     return (
-        <View style={{ marginTop: 25}}>
+        <View style={{ marginTop:25 }}>
             {/* User info Section */}
             <View style={{ display: 'flex', flexDirection: 'row', gap: 5 }}>
                 <Image source={{ uri: user?.imageUrl }}
@@ -20,7 +20,11 @@ export default function Header() {
             </View>
             {/* Searchbar */}
             <View style={styles.searchbarContainer}>
-                <TextInput placeholder='Search' style={{ width: '90%', fontSize: 17, color: 'black' }} selectionColor={'grey'} onChangeText={(value)=>console.log(value)} />
+                <TextInput 
+                placeholder='Search' 
+                style={{ width: '90%', fontSize: 17, color: 'black' }} 
+                selectionColor={'grey'} 
+                onChangeText={(value)=>console.log(value)} />
                 <FontAwesome name="search" size={20} color="gray" />
             </View>
         </View>

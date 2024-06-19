@@ -59,7 +59,7 @@ export default function AddPostScreen() {
         //Covert URI to Blob File
         const resp = await fetch(image);
         const blob = await resp.blob();
-        const storageRef = ref(storage, 'communityPost/' + Date.now() + ".jpg");
+        const storageRef = ref(storage, 'communityPost/'+ Date.now()+".jpg");
 
         uploadBytes(storageRef, blob).then((snapshot) => {
             console.log('Uploaded a blob or file!');

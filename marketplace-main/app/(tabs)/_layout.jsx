@@ -1,9 +1,5 @@
 import { View, Text } from 'react-native'
 import React from 'react'
-import ExploreScreen from '../../components/ExploreScreen'
-import AddPostScreen from '../../components/AddPostScreen';
-import ProfileScreen from '../../components/ProfileScreen';
-import HomeScreen from '../../components/HomeScreen/HomeScreen';
 import { Entypo } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
