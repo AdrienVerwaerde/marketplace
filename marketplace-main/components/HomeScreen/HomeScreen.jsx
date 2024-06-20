@@ -12,9 +12,7 @@ export default function HomeScreen() {
     const db = getFirestore(app);
     const [sliderList, setSliderList] = useState([]);
     const [categoryList, setCategoryList] = useState([]);
-    const [latestItemList, setLatestItemList] = useState([]);
-    
-
+    const [latestItemList, setLatestItemList] = useState([]); 
 
     useEffect(() => {
         getSliders();
@@ -49,7 +47,7 @@ export default function HomeScreen() {
         setLatestItemList([]);
         const querySnapshot = await getDocs(collection(db, 'UserPost'), orderBy('createdAt', 'desc'));
         querySnapshot.forEach((doc) => {
-            setLatestItemList(latestItemList => [...latestItemList, doc.data()]);
+            setLatestItemList(latestItemList => [...latestItemList, {id:doc.id,...doc.data()}]);
         })
     }
 

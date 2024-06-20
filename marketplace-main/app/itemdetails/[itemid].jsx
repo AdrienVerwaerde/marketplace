@@ -4,7 +4,6 @@ import { useRoute } from '@react-navigation/native'
 import { collection, doc, getDoc, getDocs, getFirestore, query, where } from 'firebase/firestore';
 import { app } from '../../firebaseConfig';
 import { useLocalSearchParams, useNavigation } from 'expo-router';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
 import Intro from '../../components/Items/Intro';
 
 
@@ -32,10 +31,10 @@ export default function ItemDetails() {
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
             setProduct(docSnap.data());
-            setLoading(false)
         } else {
             console.log("No such document");
         }
+        setLoading(false)
     }
     return (
         <View>
