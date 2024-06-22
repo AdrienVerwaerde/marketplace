@@ -1,10 +1,11 @@
-import { View, Text, ActivityIndicator } from 'react-native'
+import { View, Text, ActivityIndicator, ScrollView } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { useRoute } from '@react-navigation/native'
 import { collection, doc, getDoc, getDocs, getFirestore, query, where } from 'firebase/firestore';
 import { app } from '../../firebaseConfig';
 import { useLocalSearchParams, useNavigation } from 'expo-router';
 import Intro from '../../components/Items/Intro';
+import UserInfo from '../../components/Items/UserInfo';
 
 
 export default function ItemDetails() {
@@ -37,7 +38,7 @@ export default function ItemDetails() {
         setLoading(false)
     }
     return (
-        <View>
+        <ScrollView style={{backgroundColor:'#fff'}}>
             {loading?
             <ActivityIndicator
             size={'large'}
@@ -45,8 +46,9 @@ export default function ItemDetails() {
             />:
             <View>
                 <Intro product={product}/>
+                <UserInfo product={product} />
             </View>}
             
-        </View>
+        </ScrollView>
     )
 }

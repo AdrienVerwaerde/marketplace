@@ -21,6 +21,7 @@ export default function Intro({ product }) {
                 <Text style={styles.itemTitle}>{product.title}</Text>
                 <View style={{alignItems:'baseline'}}>
                 <Text style={styles.cardCategory}>{product.category}</Text>
+                <Text style={styles.itemPrice}>{product.price}€</Text>
                 </View>
                 <Text style={{marginHorizontal: 5, marginTop:5, fontWeight:'bold', fontSize:20}}>Description</Text>
                 <Text style={styles.itemDesc}>{product.desc}</Text>
@@ -53,7 +54,7 @@ const styles = StyleSheet.create({
         
     },
     textContainer: {
-        padding: 5,
+        padding: 10,
     },
     cardCategory: {
         fontSize:14, 
@@ -61,7 +62,14 @@ const styles = StyleSheet.create({
         backgroundColor:'#E5E7EB',
         borderRadius:10, 
         marginBottom:3, 
-        padding:5,
+        marginHorizontal:3, 
+        padding:3,
         paddingHorizontal:10 
+    },
+    itemPrice: {
+        fontSize: 20,
+        marginHorizontal: 5,
+        marginTop: 2,
+        color: '#0EA5E9',
     }
 })
