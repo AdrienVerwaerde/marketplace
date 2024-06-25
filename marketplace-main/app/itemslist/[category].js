@@ -35,30 +35,31 @@ export default function ItemList() {
         const snapshot = await getDocs(q);
         setLoading(false)
         snapshot.forEach(doc => {
-            setItemList(itemList => [...itemList, {id:doc?.id, ...doc.data()}]);
+            setItemList(itemList => [...itemList, { id: doc?.id, ...doc.data() }]);
             setLoading(false)
         })
     }
     return (
-        <View style={{padding:10, backgroundColor:'#fff', height:'100%'}}>
+        <View style={{ padding: 10, backgroundColor: '#fff', height: '100%' }}>
 
             {/* Searchbar */}
             <View style={styles.searchbarContainer}>
-                <TextInput 
-                placeholder={searchPlaceholder}
-                style={{ width: '90%', fontSize: 17, color: 'black' }} 
-                selectionColor={'grey'} 
-                onChangeText={(value)=>console.log(value)} />
+                <TextInput
+                    placeholder={searchPlaceholder}
+                    style={{ width: '90%', fontSize: 17, color: 'black' }}
+                    selectionColor={'grey'}
+                    onChangeText={(value) => console.log(value)} />
                 <FontAwesome name="search" size={20} color="gray" />
             </View>
+
             {loading ?
-                <ActivityIndicator style={{marginTop: 20}} size={'large'} color={'#3b82f6'} />
+                <ActivityIndicator style={{ marginTop: 20 }} size={'large'} color={'#3b82f6'} />
                 :
                 itemList?.length > 0 ? <ItemsInCategoryList itemsInCategoryList={itemList}
                     heading={''} />
                     : <Text>No Post Found</Text>}
-                
         </View>
+
     )
 }
 

@@ -4,6 +4,7 @@ import { Entypo } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
+import HomeScreen from '../../components/HomeScreen/HomeScreen'
 
 export default function TabLayout() {
     return (
