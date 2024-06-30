@@ -3,7 +3,7 @@ import React from 'react'
 import { useRouter } from 'expo-router'
 
 
-export default function Categories({categoryList}) {
+export default function Categories({ categoryList }) {
     const router = useRouter();
 
     return (

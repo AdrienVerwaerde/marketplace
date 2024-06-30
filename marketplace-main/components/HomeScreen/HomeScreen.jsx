@@ -52,7 +52,7 @@ export default function HomeScreen() {
     }
 
     return (
-        <ScrollView style={styles.contentContainer}>
+        <ScrollView showsVerticalScrollIndicator={false} style={styles.contentContainer}>
             <Header />
             <Slider sliderList={sliderList} />
             <Categories categoryList={categoryList} />

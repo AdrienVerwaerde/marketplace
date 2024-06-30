@@ -98,9 +98,9 @@ export default function AddPostScreen() {
                     validate={(values) => {
                         const errors = {}
                         if (!values.title) {
-                            console.log("Title not Present");
+                            console.log("No title");
                             ToastAndroid.show('Title Must be There', ToastAndroid.SHORT)
-                            errors.name = "Title Must be there"
+                            errors.name = "You must write a title"
                         }
                         return errors
                     }}
@@ -157,7 +157,7 @@ export default function AddPostScreen() {
                                 style={{
                                     backgroundColor: loading ? '#ccc' : '#007BFF',
                                     backgroundColor: '#2196F3',
-                                    borderRadius: 50,
+                                    borderRadius: 15,
                                     padding: 15,
                                     marginTop: 25,
                                 }}

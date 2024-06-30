@@ -18,7 +18,10 @@ export default function UserInfo({ product }) {
           <Text style={{ color: 'gray' }}>{product.userEmail}</Text>
         </View>
       </View>
-      <TouchableOpacity onPress={sendEmail} style={styles.contactContainer}>
+      <TouchableOpacity 
+      onPress={sendEmail} 
+      style={styles.contactContainer}
+      activeOpacity={1}>
         <Text style={styles.contactButton}>
           Contact Seller
         </Text>
@@ -52,7 +55,7 @@ const styles = StyleSheet.create({
     gap: 5,
     backgroundColor: '#0EA5E9',
     borderColor: 'gray',
-    borderRadius: 20
+    borderRadius: 15
   },
   contactButton: {
     fontSize: 15,
